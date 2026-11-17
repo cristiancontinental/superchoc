@@ -1,5 +1,6 @@
 
 import { useState } from 'react'
+
 import {
   Clock,
   ChefHat,
@@ -8,210 +9,218 @@ import {
   CheckCircle2,
   Utensils,
   Heart,
-  Leaf
+  Leaf,
 } from 'lucide-react'
 
 import { Link } from 'react-router'
 
 const categorias = [
   'Todas',
-  'Desayunos',
   'Almuerzos',
   'Cenas',
-  'Ensaladas'
 ]
 
 const recetas = [
   {
     id: 1,
-    nombre: 'Ensalada de lentejas',
-    categoria: 'Ensaladas',
-    tiempo: '25 min',
-    dificultad: 'Fácil',
-    emoji: '🥗',
-    color: 'bg-green-100',
-    descripcion: 'Una combinación de lentejas, tomate y limón.',
+    nombre: 'Picante de sangrecita',
+    categoria: 'Almuerzos',
+    tiempo: '35 min',
+    dificultad: 'Media',
+    emoji: '🍲',
+    imagen: '/imagenes/sangresita.jpg',
+    color: 'bg-red-100',
+    descripcion:
+      'Un plato tradicional peruano preparado con sangrecita de pollo, papa y un aderezo lleno de sabor.',
     ingredientes: [
-      '1 taza de lentejas cocidas',
-      '1 tomate mediano',
-      '1/2 cebolla',
-      'Jugo de 1 limón',
-      'Perejil picado',
-      'Una cucharada de aceite de oliva'
+      '250 g de sangrecita de pollo limpia',
+      '2 papas medianas',
+      '1 cebolla mediana',
+      '2 dientes de ajo',
+      '2 cucharadas de ají amarillo molido',
+      'Una cucharada de aceite',
+      'Hierbabuena o perejil picado',
+      'Sal y pimienta al gusto',
+      'Limón para acompañar',
     ],
     preparacion: [
-      'Cocina las lentejas hasta que estén suaves y escúrrelas.',
-      'Lava y corta el tomate y la cebolla.',
-      'Mezcla todos los ingredientes en un recipiente.',
-      'Agrega el jugo de limón, el aceite y el perejil.',
-      'Mezcla y sirve.'
+      'Lava y cocina completamente la sangrecita de pollo en agua. Escúrrela y pícala en trozos pequeños.',
+      'Pela las papas, córtalas en cubos y cocínalas hasta que estén suaves.',
+      'En una sartén prepara un aderezo con aceite, cebolla picada, ajo y ají amarillo.',
+      'Agrega la sangrecita cocida y mezcla con el aderezo durante unos minutos.',
+      'Incorpora las papas y la hierbabuena o perejil picado.',
+      'Verifica que todo esté bien cocido y sirve acompañado de limón y una ensalada.',
     ],
-    consejo: 'Las lentejas aportan hierro vegetal. El limón aporta vitamina C, que favorece su absorción.'
+    consejo:
+      'La sangrecita contiene hierro de origen animal (hierro hemo). Puedes acompañar el plato con limón para incorporar vitamina C a la comida.',
   },
   {
     id: 2,
-    nombre: 'Tortilla de espinacas',
-    categoria: 'Desayunos',
-    tiempo: '15 min',
+    nombre: 'Lentejas guisadas con ensalada criolla',
+    categoria: 'Almuerzos',
+    tiempo: '40 min',
     dificultad: 'Fácil',
-    emoji: '🍳',
-    color: 'bg-yellow-100',
-    descripcion: 'Una preparación sencilla con huevo y espinacas.',
+    emoji: '🥘',
+    imagen: '/imagenes/guiso de lentejas con ensalada criolla.jpg',
+    color: 'bg-amber-100',
+    descripcion:
+      'Un clásico de la cocina peruana que combina lentejas guisadas con una fresca ensalada criolla.',
     ingredientes: [
-      '2 huevos',
-      '1 taza de espinacas frescas',
-      '1/4 de cebolla',
-      'Una cucharadita de aceite',
-      'Sal al gusto'
+      '1 taza de lentejas',
+      '1 cebolla mediana',
+      '1 tomate',
+      '1 zanahoria',
+      '2 dientes de ajo',
+      '2 tazas de agua aproximadamente',
+      'Aceite vegetal',
+      'Sal, comino y pimienta al gusto',
+      'Limón para la ensalada',
     ],
     preparacion: [
-      'Lava bien las espinacas.',
-      'Pica la cebolla y las espinacas.',
-      'Bate los huevos en un recipiente.',
-      'Agrega las verduras y mezcla.',
-      'Cocina en una sartén con un poco de aceite hasta que esté lista.'
+      'Lava las lentejas y retira cualquier impureza.',
+      'Pica la cebolla, el tomate, el ajo y la zanahoria.',
+      'En una olla prepara un aderezo con aceite, cebolla, ajo y tomate.',
+      'Agrega las lentejas, la zanahoria y el agua.',
+      'Cocina a fuego medio hasta que las lentejas estén suaves.',
+      'Prepara una ensalada con cebolla, tomate y limón. Sirve junto con las lentejas.',
     ],
-    consejo: 'El huevo y las espinacas aportan nutrientes importantes dentro de una alimentación variada.'
+    consejo:
+      'Las lentejas aportan hierro no hemo. Acompañarlas con limón y tomate, fuentes de vitamina C, favorece su absorción.',
   },
   {
     id: 3,
-    nombre: 'Salteado de carne y verduras',
+    nombre: 'Quinua salteada con verduras y pollo',
     categoria: 'Almuerzos',
     tiempo: '30 min',
-    dificultad: 'Media',
-    emoji: '🥩',
-    color: 'bg-orange-100',
-    descripcion: 'Carne acompañada de verduras frescas.',
+    dificultad: 'Fácil',
+    emoji: '🍛',
+    imagen: '/imagenes/quinua.jpg',
+    color: 'bg-yellow-100',
+    descripcion:
+      'Una preparación nutritiva que combina quinua, pollo y verduras en un plato lleno de color.',
     ingredientes: [
-      '150 g de carne de res',
+      '1 taza de quinua',
+      '150 g de pechuga de pollo',
       '1 zanahoria',
-      '1/2 pimiento',
+      '1/2 pimiento rojo',
       '1/2 cebolla',
+      '1 diente de ajo',
       'Una cucharada de aceite',
-      'Sal al gusto'
+      'Sal y pimienta al gusto',
+      'Limón al gusto',
     ],
     preparacion: [
-      'Lava y corta las verduras.',
-      'Corta la carne en tiras pequeñas.',
-      'Calienta el aceite en una sartén.',
-      'Cocina la carne hasta que esté bien cocida.',
-      'Agrega las verduras y cocina hasta que estén tiernas.',
-      'Sirve acompañado de arroz si lo deseas.'
+      'Lava la quinua varias veces con agua y cocínala hasta que esté suave.',
+      'Corta el pollo en trozos pequeños y sazónalo.',
+      'Pica la cebolla, el pimiento y la zanahoria.',
+      'En una sartén agrega aceite, ajo y cebolla. Incorpora el pollo y cocínalo completamente.',
+      'Añade las verduras y saltea durante unos minutos.',
+      'Agrega la quinua cocida, mezcla bien y sirve con unas gotas de limón.',
     ],
-    consejo: 'La carne de res aporta hierro hemo, que el organismo absorbe más fácilmente que el hierro no hemo.'
+    consejo:
+      'La quinua y las verduras forman parte de una alimentación variada. El pimiento y el limón aportan vitamina C.',
   },
   {
     id: 4,
-    nombre: 'Ensalada de garbanzos',
-    categoria: 'Ensaladas',
-    tiempo: '20 min',
-    dificultad: 'Fácil',
-    emoji: '🥙',
-    color: 'bg-amber-100',
-    descripcion: 'Una ensalada fresca y nutritiva con garbanzos.',
+    nombre: 'Causa limeña de atún',
+    categoria: 'Almuerzos',
+    tiempo: '35 min',
+    dificultad: 'Media',
+    emoji: '🥑',
+    imagen: '/imagenes/causa-de-atun-peruana.jpg',
+    color: 'bg-orange-100',
+    descripcion:
+      'Un plato tradicional de la gastronomía peruana elaborado con papa amarilla, limón y un relleno de atún.',
     ingredientes: [
-      '1 taza de garbanzos cocidos',
-      '1 tomate',
-      '1/2 pepino',
-      'Jugo de medio limón',
-      'Perejil',
-      'Una cucharada de aceite de oliva'
+      '4 papas amarillas medianas',
+      '1 lata de atún escurrido',
+      '1 limón',
+      '2 cucharadas de ají amarillo molido',
+      '1 palta',
+      '2 cucharadas de mayonesa',
+      '1/2 cebolla pequeña',
+      'Sal y pimienta al gusto',
     ],
     preparacion: [
-      'Escurre los garbanzos cocidos.',
-      'Lava y corta el tomate y el pepino.',
-      'Coloca los ingredientes en un recipiente.',
-      'Añade el limón, el aceite y el perejil.',
-      'Mezcla y sirve fresco.'
+      'Lava las papas y cocínalas hasta que estén suaves.',
+      'Pela las papas mientras estén tibias y aplástalas hasta obtener un puré.',
+      'Agrega el ají amarillo, el jugo de limón, sal y pimienta. Mezcla hasta integrar.',
+      'En otro recipiente mezcla el atún con la cebolla picada y la mayonesa.',
+      'Coloca una capa de papa en un molde, agrega el relleno de atún y unas rodajas de palta.',
+      'Cubre con otra capa de papa, desmolda con cuidado y sirve.',
     ],
-    consejo: 'Los garbanzos contienen hierro vegetal. El limón aporta vitamina C.'
+    consejo:
+      'Puedes acompañar la causa con una ensalada de verduras frescas para incorporar variedad de nutrientes.',
   },
   {
     id: 5,
-    nombre: 'Bowl de avena y fresas',
-    categoria: 'Desayunos',
-    tiempo: '10 min',
-    dificultad: 'Fácil',
-    emoji: '🍓',
-    color: 'bg-rose-100',
-    descripcion: 'Una opción sencilla para comenzar el día.',
-    ingredientes: [
-      '1/2 taza de avena',
-      '1 taza de leche o bebida de tu preferencia',
-      '5 fresas',
-      '1 plátano',
-      'Una cucharadita de miel (opcional)'
-    ],
-    preparacion: [
-      'Coloca la avena en un recipiente.',
-      'Añade la leche y mezcla.',
-      'Lava y corta las fresas.',
-      'Agrega las fresas y el plátano.',
-      'Añade miel si lo deseas y sirve.'
-    ],
-    consejo: 'La avena aporta hierro vegetal y las fresas contienen vitamina C.'
-  },
-  {
-    id: 6,
-    nombre: 'Guiso de lentejas',
+    nombre: 'Sudado de pescado peruano',
     categoria: 'Cenas',
-    tiempo: '40 min',
+    tiempo: '35 min',
     dificultad: 'Media',
-    emoji: '🍲',
-    color: 'bg-red-100',
-    descripcion: 'Un plato casero con lentejas y verduras.',
+    emoji: '🐟',
+    imagen: '/imagenes/sudado de pescado.jpg',
+    color: 'bg-blue-100',
+    descripcion:
+      'Un plato casero preparado con pescado, tomate, cebolla y culantro, característico de la cocina peruana.',
     ingredientes: [
-      '1 taza de lentejas',
-      '1 zanahoria',
-      '1 tomate',
-      '1/2 cebolla',
-      '2 tazas de agua',
-      'Ajo y condimentos al gusto'
+      '2 filetes de pescado fresco',
+      '1 cebolla mediana',
+      '2 tomates',
+      '1/2 pimiento',
+      '1 cucharada de ají amarillo molido',
+      '1 diente de ajo',
+      '1/2 taza de agua o caldo',
+      'Culantro picado',
+      'Jugo de medio limón',
+      'Sal y pimienta al gusto',
     ],
     preparacion: [
-      'Lava las lentejas.',
-      'Pica la cebolla, el tomate y la zanahoria.',
-      'Prepara un aderezo con cebolla, ajo y tomate.',
-      'Añade las lentejas, el agua y la zanahoria.',
-      'Cocina hasta que las lentejas estén suaves.',
-      'Sirve caliente.'
+      'Lava y corta la cebolla, el tomate y el pimiento en tiras.',
+      'En una olla prepara un aderezo con ajo, ají amarillo y cebolla.',
+      'Agrega el tomate, el pimiento y el agua o caldo.',
+      'Coloca los filetes de pescado sobre las verduras y sazona.',
+      'Tapa la olla y cocina a fuego medio hasta que el pescado esté completamente cocido y se desmenuce fácilmente.',
+      'Agrega culantro picado y unas gotas de limón antes de servir.',
     ],
-    consejo: 'Las lentejas son una fuente vegetal de hierro y fibra.'
-  }
+    consejo:
+      'El pescado aporta proteínas y otros nutrientes importantes. Puedes acompañarlo con verduras y una porción de camote.',
+  },
 ]
 
 function Recetas() {
   const [categoriaActiva, setCategoriaActiva] = useState('Todas')
   const [recetaSeleccionada, setRecetaSeleccionada] = useState(null)
 
-  const recetasFiltradas = categoriaActiva === 'Todas'
-    ? recetas
-    : recetas.filter(
-        receta => receta.categoria === categoriaActiva
-      )
+  const recetasFiltradas =
+    categoriaActiva === 'Todas'
+      ? recetas
+      : recetas.filter(
+          (receta) => receta.categoria === categoriaActiva
+        )
 
   return (
     <div className="bg-[#FFF9F0]">
 
       {/* PORTADA */}
       <section className="bg-gradient-to-br from-[#542D25] to-[#8B5038] px-6 py-20 text-white md:py-24">
-
         <div className="mx-auto max-w-5xl text-center">
 
           <span className="rounded-full bg-white/15 px-5 py-2 text-sm">
-            🥗 Alimentación saludable
+            🇵🇪 Gastronomía peruana
           </span>
 
           <h1 className="mt-8 text-4xl font-extrabold md:text-6xl">
-            Recetas saludables
+            Recetas peruanas
             <span className="block text-[#E7B85C]">
-              para cuidar tu bienestar
+              saludables y deliciosas
             </span>
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl leading-relaxed text-[#F4E8D4]">
-            Descubre preparaciones deliciosas con alimentos
-            que aportan hierro y otros nutrientes importantes.
+            Descubre platos de nuestra gastronomía elaborados
+            con ingredientes que aportan hierro, vitamina C
+            y otros nutrientes importantes.
           </p>
 
           <a
@@ -225,24 +234,25 @@ function Recetas() {
         </div>
       </section>
 
-      {/* INTRODUCCION */}
+      {/* INTRODUCCIÓN */}
       <section className="mx-auto max-w-5xl px-6 py-16 text-center">
 
         <Leaf size={40} className="mx-auto text-[#9C5B37]" />
 
         <h2 className="mt-4 text-3xl font-bold text-[#542D25]">
-          Comer saludable también puede ser delicioso
+          Nuestra gastronomía también nos nutre
         </h2>
 
         <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-gray-600">
-          Una alimentación variada puede incluir carnes,
-          legumbres, verduras y frutas. Aquí encontrarás
-          ideas sencillas para preparar en casa.
+          La cocina peruana cuenta con una gran variedad de
+          ingredientes y preparaciones. En esta sección encontrarás
+          recetas que puedes preparar en casa utilizando carnes,
+          pescados, legumbres, verduras y otros alimentos.
         </p>
 
       </section>
 
-      {/* CATALOGO */}
+      {/* CATÁLOGO */}
       <section id="catalogo" className="bg-[#F4E8D4] px-6 py-20">
 
         <div className="mx-auto max-w-6xl">
@@ -250,15 +260,15 @@ function Recetas() {
           <div className="mb-10 text-center">
 
             <span className="font-semibold uppercase tracking-widest text-[#9C5B37]">
-              Nuestro recetario
+              Nuestro recetario peruano
             </span>
 
             <h2 className="mt-3 text-3xl font-bold text-[#542D25] md:text-4xl">
-              Encuentra tu próxima receta
+              Descubre nuestras recetas
             </h2>
 
             <p className="mt-4 text-gray-600">
-              Selecciona una categoría para descubrir diferentes preparaciones.
+              Selecciona una categoría y encuentra tu próxima preparación.
             </p>
 
           </div>
@@ -292,18 +302,25 @@ function Recetas() {
                 className="overflow-hidden rounded-3xl bg-white shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl"
               >
 
-                {/* IMAGEN PROVISIONAL */}
-                <div className={`relative flex h-52 items-center justify-center ${receta.color}`}>
+                
+              {/* IMAGEN REAL DE LA RECETA */}
+              <div className={`relative h-52 overflow-hidden ${receta.color}`}>
 
-                  <span className="text-8xl">
-                    {receta.emoji}
-                  </span>
+                <img
+                  src={receta.imagen}
+                  alt={receta.nombre}
+                  className="h-full w-full object-cover transition duration-500 hover:scale-105"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none'
+                  }}
+                />
 
-                  <span className="absolute bottom-4 left-4 rounded-full bg-white/90 px-4 py-2 text-xs font-bold text-[#542D25]">
-                    {receta.categoria}
-                  </span>
+                <span className="absolute bottom-4 left-4 rounded-full bg-white/90 px-4 py-2 text-xs font-bold text-[#542D25]">
+                  {receta.categoria}
+                </span>
 
-                </div>
+              </div>
 
                 <div className="p-6">
 
@@ -346,7 +363,7 @@ function Recetas() {
           </div>
 
           <p className="mt-8 text-center text-sm text-gray-600">
-            Mostrando {recetasFiltradas.length} recetas.
+            Mostrando {recetasFiltradas.length} recetas peruanas.
           </p>
 
         </div>
@@ -364,10 +381,11 @@ function Recetas() {
           </h2>
 
           <p className="mt-5 leading-relaxed text-[#F4E8D4]">
-            Combina alimentos vegetales ricos en hierro,
-            como las lentejas y los garbanzos, con alimentos
-            que aporten vitamina C, como la naranja, el limón
-            y las fresas.
+            Algunos alimentos contienen hierro hemo, como las carnes,
+            mientras que las legumbres contienen hierro no hemo.
+            Acompañar los alimentos de origen vegetal con fuentes
+            de vitamina C, como el limón, el tomate o la naranja,
+            favorece la absorción del hierro no hemo.
           </p>
 
           <Link
@@ -419,9 +437,11 @@ function Recetas() {
 
               <div className="text-center">
 
-                <span className="text-7xl">
-                  {recetaSeleccionada.emoji}
-                </span>
+                <img
+                  src={recetaSeleccionada.imagen}
+                  alt={recetaSeleccionada.nombre}
+                  className="mx-auto h-56 w-full rounded-2xl object-cover"
+                />
 
                 <h3 className="mt-4 text-2xl font-extrabold text-[#542D25]">
                   {recetaSeleccionada.nombre}
@@ -454,8 +474,12 @@ function Recetas() {
                 <div className="mt-4 space-y-3">
 
                   {recetaSeleccionada.ingredientes.map((item, index) => (
-                    <div key={index} className="flex items-center gap-3 rounded-xl bg-white p-3">
+                    <div
+                      key={index}
+                      className="flex items-center gap-3 rounded-xl bg-white p-3"
+                    >
                       <CheckCircle2 size={19} className="shrink-0 text-[#9C5B37]" />
+
                       <span className="text-sm text-gray-700">
                         {item}
                       </span>
@@ -465,7 +489,7 @@ function Recetas() {
                 </div>
               </div>
 
-              {/* PREPARACION */}
+              {/* PREPARACIÓN */}
               <div className="mt-9">
 
                 <h4 className="text-xl font-bold text-[#542D25]">

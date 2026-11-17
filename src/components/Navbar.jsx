@@ -19,13 +19,18 @@ function Navbar() {
     <header className="sticky top-0 z-50 bg-[#542D25] text-white shadow-lg">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
 
-        {/* LOGO */}
-        <NavLink to="/" className="flex items-center gap-2">
-          <ShoppingBag size={27} />
-          <span className="text-2xl font-extrabold tracking-wide">
-            SuperChoc<span className="text-[#E7B85C]">.</span>
-          </span>
-        </NavLink>
+      {/* LOGO */}
+      <NavLink to="/" className="flex items-center gap-2">
+        <img
+          src="/imagenes/logo2.jpg"
+          alt="Logo de SuperChoc"
+          className="h-10 w-10 object-contain"
+        />
+
+        <span className="text-2xl font-extrabold tracking-wide">
+          SuperChoc<span className="text-[#E7B85C]">.</span>
+        </span>
+      </NavLink>
 
         {/* MENU DE ESCRITORIO */}
         <div className="hidden items-center gap-6 lg:flex">
